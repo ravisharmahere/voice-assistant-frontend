@@ -12,6 +12,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       # Check out the repository code
       - name: Checkout code
@@ -33,7 +34,7 @@ jobs:
       # Verify pnpm installation
       - name: Verify pnpm installation
         run: |
-          pnpm --version || echo "pnpm is not installed"
+          command -v pnpm || echo "pnpm is not installed"
 
       # Fallback installation for pnpm if not installed
       - name: Install pnpm (fallback)
