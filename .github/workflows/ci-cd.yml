@@ -25,22 +25,11 @@ jobs:
           node-version: '18'
           cache: 'pnpm'
 
-      # Setup pnpm
+      # Enable and prepare pnpm using corepack
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9.15.9
-
-      # Verify pnpm installation
-      - name: Verify pnpm installation
         run: |
-          command -v pnpm || echo "pnpm is not installed"
-
-      # Fallback installation for pnpm if not installed
-      - name: Install pnpm (fallback)
-        if: failure()
-        run: |
-          npm install -g pnpm@9.15.9
+          corepack enable
+          corepack prepare pnpm@9.15.9 --activate
           pnpm --version
 
       # Build the Docker image from the Dockerfile
