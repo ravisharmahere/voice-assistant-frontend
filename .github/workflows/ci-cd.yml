@@ -24,11 +24,11 @@ jobs:
           node-version: '18'
           cache: 'pnpm'
 
-      # Install pnpm
-      - name: Install pnpm
-        run: |
-          npm install -g pnpm@9.15.9
-          echo "::add-path::$(npm root -g)/pnpm"
+      # Setup pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9.15.9
 
       # Build the Docker image from the Dockerfile
       - name: Build Docker Image
