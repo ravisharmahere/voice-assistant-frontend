@@ -26,7 +26,9 @@ jobs:
 
       # Install pnpm
       - name: Install pnpm
-        run: npm install -g pnpm@9.15.9
+        run: |
+          npm install -g pnpm@9.15.9
+          echo "::add-path::$(npm root -g)/pnpm"
 
       # Build the Docker image from the Dockerfile
       - name: Build Docker Image
