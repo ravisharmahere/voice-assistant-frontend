@@ -30,6 +30,18 @@ jobs:
         with:
           version: 9.15.9
 
+      # Verify pnpm installation
+      - name: Verify pnpm installation
+        run: |
+          pnpm --version || echo "pnpm is not installed"
+
+      # Fallback installation for pnpm if not installed
+      - name: Install pnpm (fallback)
+        if: failure()
+        run: |
+          npm install -g pnpm@9.15.9
+          pnpm --version
+
       # Build the Docker image from the Dockerfile
       - name: Build Docker Image
         run: |
