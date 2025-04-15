@@ -26,9 +26,7 @@ jobs:
 
       # Install pnpm
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9.15.9
+        run: npm install -g pnpm@9.15.9
 
       # Build the Docker image from the Dockerfile
       - name: Build Docker Image
