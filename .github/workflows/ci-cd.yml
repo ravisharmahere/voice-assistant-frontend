@@ -12,27 +12,25 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      # Check out the repository code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up Node.js environment
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9  # Specify the pnpm version you need
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           cache: 'pnpm'
 
-      # Enable and prepare pnpm using corepack
-      - name: Setup pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@9.15.9 --activate
-          pnpm --version
+      - name: Install dependencies
+        run: pnpm install
 
-      # Build the Docker image from the Dockerfile
+      # Continue with your build steps
       - name: Build Docker Image
         run: |
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP_NAME }}:latest .
