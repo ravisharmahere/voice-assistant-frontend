@@ -21,4 +21,4 @@ RUN pnpm run build
 EXPOSE 5001
 
 # Start the application in production mode
-CMD ["pnpm", "start"]
+CMD ["pnpm", "dev"]
