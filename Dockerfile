@@ -18,7 +18,7 @@ COPY . .
 RUN pnpm run build
 
 # Expose the port your app runs on
-EXPOSE 5001
+EXPOSE 3000
 
 # Start the application in production mode
 CMD ["pnpm", "dev"]
